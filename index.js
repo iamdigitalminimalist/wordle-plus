@@ -2,6 +2,7 @@
 
 const wordLength = 5;
 const wordGuess = 6;
+
 let wordList = ["panic", "proxy", "piano", "horse", "lover", "pizza"];
 
 let randomIndex = Math.floor(Math.random() * wordList.length);
@@ -16,6 +17,9 @@ updateGrid();
 window.addEventListener("keydown", handleKeyDown);
 
 function handleKeyDown(e) {
+  if (e.ctrlKey || e.metaKey || e.altKey) {
+    return;
+  }
   let letter = e.key.toLowerCase();
   if (letter === "enter") {
     if (currentAttempt.length < wordLength) {
@@ -29,7 +33,7 @@ function handleKeyDown(e) {
     currentAttempt = "";
   } else if (letter === "backspace") {
     currentAttempt = currentAttempt.slice(0, currentAttempt.length - 1);
-  } else if (/[a-z]/.test(letter)) {
+  } else if (/^[a-z]$/.test(letter)) {
     if (currentAttempt.length < wordLength) {
       currentAttempt += letter;
     }
