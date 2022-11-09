@@ -1,0 +1,32 @@
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+hr {
+    margin: 10px 0;
+}
+
+.cell {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border: 1px solid #aaa;
+    display: inline-block;
+    margin: 5px;
+    font-size: 40px;
+    font-weight: bold;
+}
