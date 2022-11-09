@@ -3,6 +3,11 @@
 const wordLength = 5;
 const wordGuess = 6;
 
+let GREY = "#212121";
+let LIGHT_GREY = "#555";
+let GREEN = "#538d4e";
+let YELLOW = "#b59f3b";
+
 let wordList = ["panic", "proxy", "piano", "horse", "lover", "pizza"];
 
 let randomIndex = Math.floor(Math.random() * wordList.length);
@@ -12,7 +17,10 @@ let currentAttempt = "";
 let history = [];
 
 let grid = document.getElementById("grid");
+let keyboard = document.getElementById("keyboard");
+
 buildGrid();
+buildKeyboard();
 updateGrid();
 window.addEventListener("keydown", handleKeyDown);
 
@@ -84,10 +92,31 @@ function getBgColor(letter, i) {
   let correctLetter = secret[i];
   let attemptLetter = letter[i];
   if (attemptLetter === undefined || secret.indexOf(attemptLetter) === -1) {
-    return "#212121";
+    return GREY;
   }
   if (correctLetter === attemptLetter) {
-    return "#538d4e";
+    return GREEN;
   }
-  return "#b59f3b";
+  return YELLOW;
+}
+
+function buildKeyboard() {
+  buildKeyboardRow("qwertyuiop", false);
+  buildKeyboardRow("asdfghjkl", false);
+  buildKeyboardRow("zxcvbnm", true);
+}
+
+function buildKeyboardRow(letters) {
+  let row = document.createElement("div");
+  for (let letter of letters) {
+    let button = document.createElement("button");
+    button.className = "key-button";
+    button.style.backgroundColor = LIGHT_GREY;
+    button.textContent = letter;
+    button.onclick = () => {
+      // TODO
+    };
+    row.appendChild(button);
+  }
+  keyboard.appendChild(row);
 }
